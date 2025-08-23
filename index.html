@@ -1,602 +1,573 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Custom AI Operating Systems | Automate Your Business & Unlock Growth</title>
-    <meta name="description" content="Feeling overwhelmed by manual tasks and scattered data? We build custom AI Operating Systems to automate your workflows, unify your tools, and provide data-driven insights. Stop leaking time & money. Get your free AI growth plan today.">
-    
-    <!-- React and Babel for JSX transpilation -->
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <!-- Tailwind CSS for styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Animation Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- Custom Styles -->
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #121212;
-            color: #e0e0e0;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        html { scroll-behavior: smooth; }
-        @keyframes pulse-animation {
-            0% { transform: scale(1); box-shadow: 0 5px 15px rgba(5, 202, 167, 0.2); }
-            50% { transform: scale(1.05); box-shadow: 0 10px 25px rgba(5, 202, 167, 0.4); }
-            100% { transform: scale(1); box-shadow: 0 5px 15px rgba(5, 202, 167, 0.2); }
-        }
-        .pulse { animation: pulse-animation 2s infinite; }
-        .modal-enter { opacity: 0; }
-        .modal-enter-active { opacity: 1; transition: opacity 300ms; }
-        .modal-exit { opacity: 1; }
-        .modal-exit-active { opacity: 0; transition: opacity 300ms; }
+  <title>Custom AI Operating Systems | Magnolia AI Experts</title>
+  <meta name="description" content="We build custom AI Operating Systems to automate workflows, unify data, and unlock sustainable growth for your business. Get your free AI growth plan today.">
 
-        /* --- Hero Video Styles --- */
-        .hero-video-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-        }
-        #hero-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        /* --- Integrated Chatbot Widget Styles --- */
-        .ai-widget-container {
-            position: fixed;
-            bottom: 1.5rem; /* 24px */
-            right: 1.5rem; /* 24px */
-            z-index: 1000;
-        }
-        .ai-chat-panel {
-            width: clamp(300px, 90vw, 380px);
-            height: 70vh; /* Use height instead of max-height for iframe */
-            transform-origin: bottom right;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-out;
-            background-color: #111827; /* Dark mode background */
-        }
-        .ai-widget-container.closed .ai-chat-panel {
-            transform: scale(0.95) translateY(10px);
-            opacity: 0;
-            pointer-events: none;
-        }
-        #ai-widget-toggle-btn {
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease;
-        }
-        #ai-widget-toggle-btn:hover {
-            transform: scale(1.1);
-        }
-        .pulsing-chat {
-            animation: pulse-chat-animation 2s infinite;
-        }
-        @keyframes pulse-chat-animation {
-            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-            70% { box-shadow: 0 0 0 20px rgba(239, 68, 68, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-        }
-    </style>
+  <!-- React 18 (Production) + ReactDOM + Babel for in-browser JSX transpile -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Typed.js (for hero animated text) -->
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <style>
+    /* --- Utilities / Effects --- */
+    .text-shadow-lg { text-shadow: 0 5px 25px rgba(0, 0, 0, 0.35); }
+    .pulse { animation: pulse-animation 2s infinite; }
+    @keyframes pulse-animation {
+      0%   { transform: scale(1);   box-shadow: 0 5px 15px rgba(5, 202, 167, 0.2); }
+      50%  { transform: scale(1.04); box-shadow: 0 15px 35px rgba(5, 202, 167, 0.35); }
+      100% { transform: scale(1);   box-shadow: 0 5px 15px rgba(5, 202, 167, 0.2); }
+    }
+
+    /* Modal transitions */
+    .modal-enter { opacity: 0; transform: scale(0.95); }
+    .modal-enter-active { opacity: 1; transform: scale(1); transition: opacity 300ms, transform 300ms; }
+    .modal-exit { opacity: 1; transform: scale(1); }
+    .modal-exit-active { opacity: 0; transform: scale(0.95); transition: opacity 300ms, transform 300ms; }
+
+    /* Hero Video */
+    .hero-video-container {
+      position: absolute; inset: 0; z-index: 0;
+      overflow: hidden; pointer-events: none;
+    }
+    .hero-video-container video {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    /* Chatbot Widget */
+    .ai-widget-container {
+      position: fixed;
+      bottom: 1.5rem; /* 24px */
+      right: 1.5rem;  /* 24px */
+      z-index: 1000;
+    }
+    .ai-chat-panel {
+      width: clamp(300px, 90vw, 380px);
+      height: 70vh;
+      transform-origin: bottom right;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-out;
+      background-color: #111827;
+    }
+    .ai-widget-container.closed .ai-chat-panel { transform: scale(0.95) translateY(10px); opacity: 0; pointer-events: none; }
+    .pulsing-chat { animation: pulse-animation 2s infinite; }
+  </style>
 </head>
-<body>
-    <div id="root"></div>
-    <div id="particles-js" style="position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; pointer-events: none;"></div>
-    
-    <script type="text/babel">
-        const { useState, useEffect, useRef } = React;
+<body class="bg-gray-900 text-gray-100">
+  <div id="root"></div>
 
-        function classNames(...classes) { return classes.filter(Boolean).join(' ') }
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
 
-        // SEO and general page data
-        const seoData = {
-            title: "Custom AI Operating Systems | Automate Your Business & Unlock Growth",
-            description: "Feeling overwhelmed by manual tasks and scattered data? We build custom AI Operating Systems to automate your workflows, unify your tools, and provide data-driven insights. Stop leaking time & money. Get your free AI growth plan today.",
-            keywords: "AI operating system, business automation, custom AI, workflow automation, data integration, business intelligence, AI for business",
-            author: "Magnolia AI Experts",
-            url: "https://magnoliaaiexperts.com/ai-os",
-            image: "https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg",
+    const classNames = (...classes) => classes.filter(Boolean).join(' ');
+
+    // --- SEO DATA ---
+    const seoData = {
+      title: "Custom AI Operating Systems | Magnolia AI Experts",
+      description: "We build custom AI Operating Systems to automate workflows, unify data, and unlock sustainable growth for your business. Get your free AI growth plan today.",
+      keywords: "AI operating system, business automation, custom AI, workflow automation, data integration, business intelligence, AI for business",
+      author: "Magnolia AI Experts",
+      url: "https://magnoliaaiexperts.com/ai-os",
+      image: "https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg",
+    };
+
+    // --- NAV LINKS ---
+    const navLinks = [
+      { name: 'Dashboard', page: 'home' },
+      { name: 'The Problem', page: 'problem' },
+      { name: 'Our Solution', page: 'solution' },
+      { name: 'Proven Results', page: 'results' },
+      { name: 'Start Automating', isButton: true },
+    ];
+
+    // --- HEAD SEO ---
+    const HeadSEO = ({ title, description }) => {
+      useEffect(() => {
+        document.title = title;
+        const meta = document.querySelector('meta[name="description"]');
+        if (meta) meta.setAttribute("content", description);
+      }, [title, description]);
+      return null;
+    };
+
+    // --- SECTION TITLE ---
+    const SectionTitle = ({ title, subtitle, className }) => (
+      <div className={classNames("text-center mb-10 md:mb-16", className)}>
+        <h2 className="text-3xl md:text-5xl font-black text-white relative inline-block pb-3 mb-4 tracking-tight">
+          {title}
+          <span className="absolute left-1/2 -translate-x-1/2 bottom-0 block w-24 h-1 bg-gradient-to-r from-teal-400 to-indigo-500 rounded-full"></span>
+        </h2>
+        {subtitle && <p className="max-w-3xl mx-auto text-gray-300">{subtitle}</p>}
+      </div>
+    );
+
+    // --- CONSULTATION MODAL ---
+    const ConsultationModal = ({ onClose }) => {
+      const [formData, setFormData] = useState({
+        Name: '', Email: '', 'Phone Number': '', 'Business Name': '', Role: '', Industry: '', 'Biggest Challenge': ''
+      });
+      const [status, setStatus] = useState('idle');
+      const [error, setError] = useState('');
+      const googleWebAppUrl = "https://script.google.com/macros/s/AKfycby8FgGA0reK0mLYYZDPDbnuT3wGh1ToNicOMB6AuPscX2_41So5l-H77zitdk59Pzr3/exec";
+
+      const handleChange = (e) => setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError('');
+
+        if (!formData.Name || !formData.Email || !formData['Business Name']) {
+          setError('Please fill in required fields (Name, Email, Business Name).');
+          return;
+        }
+        setStatus('loading');
+
+        const dataToSubmit = new FormData();
+        dataToSubmit.append('Timestamp', new Date().toISOString());
+        for (const key in formData) dataToSubmit.append(key, formData[key]);
+
+        try {
+          // If your GAS endpoint is anonymous and does not provide CORS,
+          // use no-cors and do not read the response.
+          await fetch(googleWebAppUrl, { method: 'POST', mode: 'no-cors', body: dataToSubmit });
+          setStatus('success');
+        } catch (err) {
+          console.error("Submission Error:", err);
+          setError('Something went wrong. Please try again or contact us directly.');
+          setStatus('error');
+        }
+      };
+
+      return (
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 modal-enter-active" onClick={onClose}>
+          <div className="w-full max-w-xl mx-auto p-6 sm:p-8 rounded-2xl bg-gray-900 border border-indigo-500/50 shadow-2xl relative" onClick={(e) => e.stopPropagation()}>
+            <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors text-3xl leading-none" aria-label="Close">&times;</button>
+
+            {status === 'success' ? (
+              <div className="text-center py-8">
+                <svg className="w-16 h-16 text-teal-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <p className="text-2xl text-teal-300 font-semibold">Request Received!</p>
+                <p className="text-gray-300 mt-2">Thank you. We'll be in touch within 24 hours to schedule your AI strategy session.</p>
+                <button onClick={onClose} className="mt-6 px-6 py-2 bg-teal-600 text-white font-semibold rounded-lg shadow-md hover:bg-teal-700">Close</button>
+              </div>
+            ) : (
+              <>
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-indigo-400">Get Your Free AI Growth Plan</h3>
+                  <p className="text-gray-300 mt-1">Tell us a bit about your business and we’ll reach out to schedule your session.</p>
+                </div>
+                <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  {error && <div className="md:col-span-2 text-red-400 bg-red-900/60 p-3 rounded-md text-sm border border-red-700">{error}</div>}
+                  <input type="text" name="Name" placeholder="Full Name *" required value={formData.Name} onChange={handleChange} className="md:col-span-2 w-full px-4 py-3 bg-gray-800 rounded-lg border border-gray-700 focus:ring-2 focus:ring-indigo-500" />
+                  <input type="email" name="Email" placeholder="Email Address *" required value={formData.Email} onChange={handleChange} className="w-full px-4 py-3 bg-gray-800 rounded-lg border border-gray-700 focus:ring-2 focus:ring-indigo-500" />
+                  <input type="tel" name="Phone Number" placeholder="Phone Number" value={formData['Phone Number']} onChange={handleChange} className="w-full px-4 py-3 bg-gray-800 rounded-lg border border-gray-700 focus:ring-2 focus:ring-indigo-500" />
+                  <input type="text" name="Business Name" placeholder="Business Name *" required value={formData['Business Name']} onChange={handleChange} className="md:col-span-2 w-full px-4 py-3 bg-gray-800 rounded-lg border border-gray-700 focus:ring-2 focus:ring-indigo-500" />
+                  <input type="text" name="Role" placeholder="Your Role (e.g., Owner)" value={formData.Role} onChange={handleChange} className="w-full px-4 py-3 bg-gray-800 rounded-lg border border-gray-700 focus:ring-2 focus:ring-indigo-500" />
+                  <select name="Industry" value={formData.Industry} onChange={handleChange} className="w-full px-4 py-3 bg-gray-800 rounded-lg border border-gray-700 focus:ring-2 focus:ring-indigo-500">
+                    <option value="">Select Industry</option>
+                    <option value="Home Services">Home Services</option>
+                    <option value="Oil & Gas">Oil & Gas</option>
+                    <option value="Healthcare">Healthcare</option>
+                    <option value="Hospitality">Hospitality</option>
+                    <option value="Automotive">Automotive</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <textarea name="Biggest Challenge" placeholder="What's your single biggest operational challenge?" value={formData['Biggest Challenge']} onChange={handleChange} className="md:col-span-2 w-full px-4 py-3 bg-gray-800 rounded-lg border border-gray-700 focus:ring-2 focus:ring-indigo-500" rows="3"></textarea>
+                  <button type="submit" disabled={status === 'loading'} className="md:col-span-2 w-full py-3 text-lg bg-teal-500 text-gray-900 font-bold rounded-lg shadow-md hover:bg-teal-600 disabled:opacity-60">
+                    {status === 'loading' ? 'Submitting...' : 'Get My Free Plan'}
+                  </button>
+                </form>
+              </>
+            )}
+          </div>
+        </div>
+      );
+    };
+
+    // --- CHATBOT WIDGET ---
+    const ChatbotWidget = () => {
+      const [isOpen, setIsOpen] = useState(false);
+      const videoRef = useRef(null);
+
+      useEffect(() => {
+        if (videoRef.current) {
+          const darkModeVideoURL = 'https://pub-23f7e1f517734fc09a3807185400d484.r2.dev/AVA_Wave_And_Chill.mp4';
+          if (videoRef.current.src !== darkModeVideoURL) videoRef.current.src = darkModeVideoURL;
+        }
+      }, []);
+
+      return (
+        <div id="ai-chatbot-widget" className={classNames('ai-widget-container', !isOpen && 'closed')}>
+          <div id="ai-chat-window" className="ai-chat-panel flex flex-col rounded-2xl shadow-2xl overflow-hidden border border-gray-700">
+            <iframe
+              src="https://www.chatbase.co/chatbot-iframe/BcoZ5tUDywN_6BEC5Xryj"
+              className="w-full h-full"
+              frameBorder="0"
+              title="AI Assistant"
+            ></iframe>
+          </div>
+
+          <button
+            id="ai-widget-toggle-btn"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Close Chat" : "Open Chat"}
+            aria-expanded={isOpen}
+            className={classNames(
+              'w-24 h-24 bg-transparent rounded-full flex items-center justify-center overflow-hidden focus:outline-none focus:ring-4 focus:ring-teal-500 focus:ring-opacity-50',
+              !isOpen && 'pulsing-chat'
+            )}
+          >
+            <video ref={videoRef} id="avatar-video" className="w-full h-full object-cover" autoPlay muted playsInline loop></video>
+          </button>
+        </div>
+      );
+    };
+
+    // --- NAVIGATION ---
+    const Navigation = ({ activePage, onNavigate, onCtaClick }) => (
+      <nav className="sticky top-0 z-40 bg-gray-900/80 backdrop-blur-lg shadow-2xl py-2">
+        <div className="container mx-auto px-4">
+          <ul className="flex justify-center items-center flex-wrap gap-x-2 md:gap-x-6 gap-y-1">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <button
+                  onClick={() => link.isButton ? onCtaClick() : onNavigate(link.page)}
+                  className={classNames(
+                    'block px-2 py-2 md:px-3 text-sm md:text-base font-bold rounded-md transition-all duration-300 whitespace-nowrap',
+                    activePage === link.page && !link.isButton ? 'bg-indigo-600 text-white shadow-lg' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                    link.isButton && 'bg-teal-500 text-gray-900 hover:bg-teal-400 shadow-lg'
+                  )}
+                  aria-label={link.name}
+                >
+                  {link.name}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
+    );
+
+    // --- PAGES ---
+    const HomePage = ({ onCtaClick }) => {
+      const typedRef = useRef(null);
+
+      useEffect(() => {
+        const options = {
+          strings: ['Automate the work you hate.', 'Finally... a single source of truth.', 'Make decisions with 100% clarity.', 'Unlock your hidden revenue.'],
+          typeSpeed: 50, backSpeed: 30, backDelay: 2500, loop: true
         };
+        const typed = new Typed(typedRef.current, options);
+        gsap.fromTo('.slide-up', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, stagger: 0.15, ease: 'power3.out' });
+        return () => typed.destroy();
+      }, []);
 
-        // Navigation links data
-        const navLinks = [
-            { name: 'Home', href: '#home' },
-            { name: 'The Problem', href: '#features' },
-            { name: 'The Solution', href: '#how-it-works' },
-            { name: 'Proven Results', href: '#testimonials' },
-            { name: 'Start Automating', href: '#signup', isButton: true },
-        ];
-        
-        // Component to manage SEO-related head tags
-        const HeadSEO = ({ title, description, keywords }) => {
-            useEffect(() => {
-                document.title = title;
-                document.querySelector('meta[name="description"]').setAttribute("content", description);
-            }, [title, description, keywords]);
-            return null;
-        };
-
-        // Reusable component for section titles
-        const SectionTitle = ({ title, subtitle, className }) => (
-            <div className={classNames("text-center mb-10 md:mb-16", className)}>
-                <h2 className="text-3xl md:text-5xl font-black text-white relative inline-block pb-3 mb-4 tracking-tighter">
-                    {title}
-                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-1 bg-teal-500 rounded-full"></span>
-                </h2>
-                {subtitle && <p className="text-gray-300 max-w-3xl mx-auto text-base md:text-lg">{subtitle}</p>}
+      return (
+        <>
+          <header id="home" className="relative text-white text-center overflow-hidden">
+            <div className="hero-video-container">
+              <video id="hero-video" autoPlay loop muted playsInline src="https://pub-23f7e1f517734fc09a3807185400d484.r2.dev/Stars_Shooting_Stationary%20.mp4"></video>
             </div>
-        );
-
-        // Modal for the consultation form (CRM lead capture)
-        const ConsultationModal = ({ onClose }) => {
-            const [formData, setFormData] = useState({ 
-                Name: '', 
-                Email: '', 
-                'Phone Number': '',
-                'Business Name': '', 
-                Role: '',
-                Industry: '',
-                'Biggest Challenge': ''
-            });
-            const [status, setStatus] = useState('idle'); // idle, loading, success, error
-            const [error, setError] = useState('');
-            const googleWebAppUrl = "https://script.google.com/macros/s/AKfycby8FgGA0reK0mLYYZDPDbnuT3wGh1ToNicOMB6AuPscX2_41So5l-H77zitdk59Pzr3/exec";
-
-            const handleChange = (e) => {
-                const { name, value } = e.target;
-                setFormData(prev => ({ ...prev, [name]: value }));
-            };
-
-            const handleSubmit = async (e) => {
-                e.preventDefault();
-                setError('');
-                if (!formData.Name || !formData.Email || !formData['Business Name']) {
-                    setError("Please fill in your name, email, and business name.");
-                    return;
-                }
-                setStatus('loading');
-
-                const dataToSubmit = new FormData();
-                dataToSubmit.append('Timestamp', new Date().toISOString());
-                for (const key in formData) {
-                    dataToSubmit.append(key, formData[key]);
-                }
-
-                try {
-                    await fetch(googleWebAppUrl, {
-                        method: 'POST',
-                        mode: 'no-cors', 
-                        body: dataToSubmit,
-                    });
-                    
-                    setStatus('success');
-
-                } catch (err) {
-                    console.error("Submission Network Error:", err);
-                    setError('A network error occurred. Please check your connection and try again.');
-                    setStatus('error');
-                }
-            };
-            
-            const handleModalContentClick = (e) => e.stopPropagation();
-
-            return (
-                <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 modal-enter-active" onClick={onClose}>
-                    <div className="w-full max-w-xl mx-auto p-6 sm:p-8 rounded-2xl bg-gray-900 border border-indigo-500/50 shadow-2xl relative" onClick={handleModalContentClick}>
-                        <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors text-3xl leading-none">&times;</button>
-                        {status === 'success' ? (
-                            <div className="text-center py-8">
-                                <div className="w-16 h-16 text-teal-400 mx-auto mb-4">
-                                     <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                </div>
-                                <p className="text-2xl text-teal-300 font-semibold">Request Received!</p>
-                                <p className="text-gray-300 mt-2">Thank you. We'll be in touch within 24 hours to schedule your AI strategy session.</p>
-                                <button onClick={onClose} className="mt-6 px-6 py-2 bg-teal-600 text-white font-semibold rounded-lg shadow-md hover:bg-teal-700">Close</button>
-                            </div>
-                        ) : (
-                            <>
-                                <div className="text-center mb-6">
-                                    <h2 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-indigo-400">Claim Your Free AI Growth Plan</h2>
-                                    <p className="text-gray-400 mt-2">Let's identify the #1 automation opportunity in your business. No cost, no obligation.</p>
-                                </div>
-                                <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                    {error && <div className="md:col-span-2 text-red-400 bg-red-900/60 p-3 rounded-md text-sm border border-red-700">{error}</div>}
-                                    <input type="text" name="Name" placeholder="Full Name *" required value={formData.Name} onChange={handleChange} className="md:col-span-2 w-full px-4 py-3 bg-gray-800 text-gray-100 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400" />
-                                    <input type="email" name="Email" placeholder="Email Address *" required value={formData.Email} onChange={handleChange} className="w-full px-4 py-3 bg-gray-800 text-gray-100 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400" />
-                                    <input type="tel" name="Phone Number" placeholder="Phone Number" value={formData['Phone Number']} onChange={handleChange} className="w-full px-4 py-3 bg-gray-800 text-gray-100 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400" />
-                                    <input type="text" name="Business Name" placeholder="Business Name *" required value={formData['Business Name']} onChange={handleChange} className="md:col-span-2 w-full px-4 py-3 bg-gray-800 text-gray-100 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400" />
-                                    <input type="text" name="Role" placeholder="Your Role (e.g., Owner)" value={formData.Role} onChange={handleChange} className="w-full px-4 py-3 bg-gray-800 text-gray-100 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400" />
-                                    <select name="Industry" value={formData.Industry} onChange={handleChange} className="w-full px-4 py-3 bg-gray-800 text-gray-100 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                                        <option value="">Select Industry</option>
-                                        <option value="Home Services">Home Services</option>
-                                        <option value="Oil & Gas">Oil & Gas</option>
-                                        <option value="Real Estate">Real Estate</option>
-                                        <option value="Restaurants">Restaurants</option>
-                                        <option value="Medical">Medical & Dental</option>
-                                        <option value="Legal">Legal Services</option>
-                                        <option value="Automotive">Automotive</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                    <textarea name="Biggest Challenge" placeholder="What's your single biggest operational challenge?" value={formData['Biggest Challenge']} onChange={handleChange} className="md:col-span-2 w-full px-4 py-3 bg-gray-800 text-gray-100 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-gray-400" rows="3"></textarea>
-                                    <button type="submit" disabled={status === 'loading'} className="md:col-span-2 w-full px-4 py-3 text-lg bg-teal-500 text-gray-900 font-bold rounded-lg shadow-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-75 disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-150">
-                                        {status === 'loading' ? 'Submitting...' : 'Get My Free Plan'}
-                                    </button>
-                                </form>
-                            </>
-                        )}
-                    </div>
+            <div className="absolute inset-0 bg-black/70 z-10"></div>
+            <div className="relative z-20 container mx-auto px-4 py-24 md:py-32 lg:py-48 flex flex-col items-center">
+              <div className="max-w-4xl">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 slide-up">Your Business is Leaking Time & Money.</h1>
+                <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-6 slide-up">
+                  We build custom AI Operating Systems that plug the gaps, automating the chaotic, manual work that's holding your business back.
+                </p>
+                <p className="text-teal-400 font-bold text-xl md:text-2xl lg:text-3xl mb-8 min-h-[3em] slide-up"><span ref={typedRef}></span></p>
+                <div className="mt-10 slide-up">
+                  <button onClick={onCtaClick} className="cta-button inline-block bg-teal-500 text-gray-900 font-bold text-lg px-12 py-4 rounded-full transition-transform duration-300 hover:-translate-y-1 shadow-lg pulse" aria-label="Start My Free Growth Strategy Session">
+                    Start My Free Growth Strategy Session
+                  </button>
+                  <p className="text-sm text-gray-400 mt-3">100% free, no obligation.</p>
                 </div>
-            );
-        };
-        
-        // The integrated chatbot widget with iframe
-        const ChatbotWidget = () => {
-            const [isOpen, setIsOpen] = useState(false);
-            const videoRef = useRef(null);
+              </div>
+            </div>
+          </header>
 
-            // Set video source for the avatar
-            useEffect(() => {
-                if(videoRef.current) {
-                    const darkModeVideoURL = 'https://pub-23f7e1f517734fc09a3807185400d484.r2.dev/AVA_Wave_And_Chill.mp4';
-                    if (videoRef.current.src !== darkModeVideoURL) {
-                        videoRef.current.src = darkModeVideoURL;
-                    }
-                }
-            }, []);
+          <section className="bg-gradient-to-r from-indigo-700 to-indigo-900 text-white text-center py-16 md:py-24">
+            <div className="container mx-auto px-4">
+              <h2 className="text-4xl md:text-5xl font-black mb-4">While You're Reading This, Your Competitor is Automating.</h2>
+              <p className="text-lg md:text-xl text-indigo-200 max-w-3xl mx-auto mb-8">Don't get left behind. Discover your #1 automation opportunity with a no-pressure, no-cost strategy session.</p>
+              <button onClick={onCtaClick} className="cta-button inline-block bg-teal-500 text-gray-900 font-bold text-lg px-12 py-4 rounded-full transition-transform duration-300 hover:-translate-y-1 shadow-lg pulse" aria-label="Claim My Free AI Growth Plan">
+                Claim My Free AI Growth Plan
+              </button>
+            </div>
+          </section>
+        </>
+      );
+    };
 
-            const toggleWidget = () => setIsOpen(!isOpen);
-
-            return (
-                <div id="ai-chatbot-widget" className={classNames('ai-widget-container', !isOpen && 'closed')}>
-                    {/* Chat Panel containing the iframe */}
-                    <div id="ai-chat-window" className="ai-chat-panel flex flex-col rounded-2xl shadow-2xl overflow-hidden border border-gray-700">
-                        <iframe
-                            src="https://www.chatbase.co/chatbot-iframe/BcoZ5tUDywN_6BEC5Xryj"
-                            className="w-full h-full"
-                            frameBorder="0"
-                        ></iframe>
-                    </div>
-
-                    {/* Toggle Button with Crawfish Avatar */}
-                     <button 
-                        id="ai-widget-toggle-btn"
-                        onClick={toggleWidget} 
-                        aria-label="Open Chat" 
-                        aria-expanded={isOpen}
-                        className={classNames(
-                            'w-24 h-24 bg-transparent rounded-full flex items-center justify-center overflow-hidden focus:outline-none focus:ring-4 focus:ring-teal-500 focus:ring-opacity-50',
-                            !isOpen && 'pulsing-chat'
-                          )}
-                    >
-                        <video 
-                            ref={videoRef}
-                            id="avatar-video"
-                            className="w-full h-full object-cover"
-                            autoPlay
-                            muted
-                            playsInline
-                            loop
-                        >
-                        </video>
-                    </button>
-                </div>
-            );
-        };
-
-        // Sticky Navigation bar
-        const Navigation = ({ activeSection, onCtaClick }) => (
-             <nav className="sticky top-0 z-40 bg-gray-900/80 backdrop-blur-lg shadow-2xl py-2">
-                <div className="container mx-auto px-4">
-                    <ul className="flex justify-center items-center flex-wrap gap-x-2 md:gap-x-6 gap-y-1">
-                        {navLinks.map((link) => (
-                            <li key={link.name}>
-                                <a 
-                                    href={link.isButton ? undefined : link.href}
-                                    onClick={link.isButton ? onCtaClick : null}
-                                    style={{ cursor: 'pointer' }}
-                                    className={classNames(
-                                        'block px-2 py-2 md:px-3 text-sm md:text-base font-bold rounded-md transition-all duration-300 whitespace-nowrap',
-                                        activeSection === (link.href && link.href.substring(1)) && !link.isButton
-                                            ? 'bg-indigo-600 text-white shadow-lg'
-                                            : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                        link.isButton && 'bg-teal-500 text-gray-900 hover:bg-teal-400 shadow-lg'
-                                    )}
-                                >
-                                    {link.name}
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </nav>
-        );
-
-        // Hero Header section
-        const Header = ({ onCtaClick }) => {
-             const typedRef = useRef(null);
-             useEffect(() => {
-                 const options = { strings: ['Automate the work you hate.', 'Finally... a single source of truth.', 'Make decisions with 100% clarity.', 'Unlock your hidden revenue.'], typeSpeed: 50, backSpeed: 30, backDelay: 2500, startDelay: 500, loop: true, smartBackspace: true, };
-                 const typed = new Typed(typedRef.current, options);
-                 return () => typed.destroy();
-             }, []);
-             
-             useEffect(() => {
-                  gsap.fromTo('.slide-up', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, stagger: 0.15, ease: 'power3.out' });
-             }, []);
-
-             return (
-                 <header id="home" className="relative text-white text-center overflow-hidden">
-                     <div className="hero-video-container">
-                         <video
-                             id="hero-video"
-                             autoPlay
-                             loop
-                             muted
-                             playsInline
-                             src="https://pub-23f7e1f517734fc09a3807185400d484.r2.dev/Stars_Shooting_Stationary%20.mp4"
-                         ></video>
-                     </div>
-                     <div className="absolute inset-0 bg-black/70 z-10"></div>
-                     <div className="relative z-20 container mx-auto px-4 py-24 md:py-32 lg:py-48 flex flex-col items-center">
-                         <div className="max-w-4xl">
-                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 slide-up text-shadow-lg">Your Business is Leaking Time & Money.</h1>
-                             <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto mb-6 slide-up">We build custom AI Operating Systems that plug the gaps, automating the chaotic, manual work that's holding your business back.</p>
-                             <p className="text-teal-400 font-bold text-xl md:text-2xl lg:text-3xl mb-8 min-h-[3em] slide-up">
-                                 <span ref={typedRef}></span>
-                             </p>
-                             <div className="mt-10 slide-up">
-                                 <button onClick={onCtaClick} className="cta-button inline-block bg-teal-500 text-gray-900 font-bold text-lg px-12 py-4 rounded-full transition-transform duration-300 hover:-translate-y-1 shadow-lg pulse">
-                                     Start My Free Growth Strategy Session
-                                 </button>
-                                 <p className="text-sm text-gray-400 mt-3">100% free, no obligation.</p>
-                             </div>
-                         </div>
-                     </div>
-                 </header>
-                );
-        };
-        
-        // Features section highlighting the problems solved
-        const FeaturesSection = () => (
-             <section id="features" className="bg-gray-800 py-16 md:py-24">
-                 <div className="container mx-auto px-4">
-                     <SectionTitle title="Stop Operating with Handcuffs On." subtitle="Your AI OS doesn't just add a feature; it removes the friction that slows you down, drains your profits, and frustrates your team." />
-                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                         {[
-                             { icon: '🧠', title: 'Your Single Source of Truth', description: "Connect CRM, email, accounting, and all your tools into one brain. Stop hunting for data and get instant, accurate answers.", aria: 'Brain Icon' },
-                             { icon: '🤖', title: 'Reclaim Your Wasted Hours', description: "Automate data entry, report generation, follow-ups, and scheduling. Free your team to focus on high-value work.", aria: 'Robot Icon' },
-                             { icon: '📈', title: 'Operate with Certainty', description: "Go beyond guessing. Your AI uncovers trends, predicts outcomes, and gives you the data to make profitable decisions, fast.", aria: 'Chart Icon' },
-                             { icon: '🔌', title: 'Amplify Your Existing Tools', description: "We don't replace what works. We integrate with your current software, making your existing investments even more powerful.", aria: 'Plug Icon' },
-                         ].map((feature) => (
-                             <div key={feature.title} className="feature-card bg-gray-900 p-8 rounded-xl shadow-lg text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-teal-500 border-2 border-transparent">
-                                 <div className="text-5xl mb-4" role="img" aria-label={feature.aria}>{feature.icon}</div>
-                                 <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
-                                 <p className="text-gray-400">{feature.description}</p>
-                             </div>
-                         ))}
-                     </div>
-                 </div>
-             </section>
-        );
-
-        // "How It Works" section detailing the process
-        const HowItWorksSection = () => (
-             <section id="how-it-works" className="py-16 md:py-24">
-                  <div className="container mx-auto px-4">
-                     <SectionTitle title="Your 3-Step Path to Effortless Operations" />
-                     <div className="relative flex flex-col md:flex-row justify-center items-stretch gap-8 md:gap-16">
-                          <div className="hidden md:block absolute top-1/2 left-0 w-full h-0.5 border-t-2 border-dashed border-gray-600 -translate-y-1/2"></div>
-                          {[
-                              { title: "1. Discover", description: "In a free strategy session, we map your current workflows and pinpoint the single biggest bottleneck costing you money." },
-                              { title: "2. Design", description: "We architect your custom AI OS blueprint, showing you exactly how it will integrate and automate your processes." },
-                              { title: "3. Deploy", description: "We build, test, and deploy your AI. We provide full training to ensure your team hits the ground running from day one." }
-                          ].map((step, index) => (
-                              <div key={index} className="step-card relative bg-gray-800 p-8 rounded-xl shadow-lg z-10 flex-1 max-w-sm text-center border border-gray-700">
-                                  <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center text-xl font-bold border-4 border-gray-900">
-                                      {index + 1}
-                                  </div>
-                                  <h3 className="text-xl font-bold text-white mt-8 mb-3">{step.title}</h3>
-                                  <p className="text-gray-400">{step.description}</p>
-                              </div>
-                          ))}
-                     </div>
+    const ProblemPage = () => {
+      const problems = [
+        { icon: '🧠', title: 'Fragmented Data & "Tool Sprawl"', description: "Customer data in the CRM, financials in QuickBooks, projects in Asana, comms in Slack. Collating manually = slow + error-prone. You miss insights hiding between silos." },
+        { icon: '🤖', title: 'Profit-Draining Manual Work', description: "Repetitive tasks (data entry, reports, follow-ups, invoices) burn time and morale. Your team can’t focus on revenue-generating work." },
+        { icon: '📈', title: 'Reactive, Gut-Feel Decisions', description: "Without a unified real-time view, you react to yesterday’s news. You need trends, forecasting, and root-cause clarity—on demand." },
+        { icon: '🔌', title: 'Wasted Tech Investments', description: "Great tools that don’t talk. Value is capped because integration cost is too high. Your stack is parts, not a system." },
+      ];
+      return (
+        <section className="bg-gray-800 py-16 md:py-24">
+          <div className="container mx-auto px-4">
+            <SectionTitle title="Your Business is Working Harder, Not Smarter." subtitle="These silent profit killers convert valuable time into waste and frustration." />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              {problems.map((problem) => (
+                <div key={problem.title} className="bg-gray-900 p-8 rounded-xl shadow-lg flex items-start space-x-6 border border-gray-700">
+                  <div className="text-5xl mt-1" role="img" aria-label="icon">{problem.icon}</div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-2">{problem.title}</h3>
+                    <p className="text-gray-400">{problem.description}</p>
                   </div>
-             </section>
-        );
-
-        // Testimonials section for social proof
-        const TestimonialsSection = () => (
-             <section id="testimonials" className="bg-gray-800 py-16 md:py-24">
-                 <div className="container mx-auto px-4">
-                     <SectionTitle title="Don't Just Take Our Word For It" subtitle="See how we're transforming businesses just like yours." />
-                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                         <div className="testimonial-card relative bg-gray-900 p-8 rounded-xl shadow-lg border border-gray-700">
-                              <p className="text-lg italic text-gray-300 mb-6">"The AI OS automated our entire client intake and project setup. It's saved us at least <span className='font-bold text-white'>20 hours of admin work a week</span>. For the first time, we're ahead of schedule."</p>
-                              <div className="text-right font-bold text-teal-400">- D. Guidry, Oil & Gas Services</div>
-                         </div>
-                         <div className="testimonial-card relative bg-gray-900 p-8 rounded-xl shadow-lg border-2 border-teal-500/50">
-                              <p className="text-lg italic text-gray-300 mb-6">"I used to spend the first two days of every month manually compiling reports. Our AI OS now builds them automatically before I even wake up. <span className='font-bold text-white'>The ROI was instant.</span> The team was incredible."</p>
-                              <div className="text-right font-bold text-teal-400">- S. Chen, Regional Healthcare Manager</div>
-                         </div>
-                         <div className="testimonial-card relative bg-gray-900 p-8 rounded-xl shadow-lg border border-gray-700">
-                              <p className="text-lg italic text-gray-300 mb-6">"Our inventory was a mess. The AI system they built tracks supply levels, predicts reorder points, and has <span className='font-bold text-white'>cut our waste by over 30%</span>. It paid for itself in six months."</p>
-                              <div className="text-right font-bold text-teal-400">- B. Hebert, Restaurant Group Owner</div>
-                         </div>
-                     </div>
-                 </div>
-             </section>
-        );
-
-        // FAQ section with an accordion
-        const FaqSection = () => {
-            const faqs = [
-                { q: "Is this only for large companies?", a: "Not at all. Our AI Operating Systems are custom-built and scale to your needs. We often find that small to medium-sized businesses see the most dramatic ROI by automating manual tasks that the owner or key employees are stuck doing." },
-                { q: "What's the actual ROI?", a: "It varies, but we target a clear return in three areas: 1) Time saved by automating tasks, 2) Money saved by reducing errors and waste, and 3) Revenue gained from faster, smarter operations. We'll build a custom ROI projection for you in our free strategy session." },
-                { q: "Is it hard for my team to use?", a: "No. Our goal is to make things simpler. The AI OS works in the background, enhancing the tools your team already uses. We design the interface to be intuitive and provide comprehensive training to ensure a smooth transition." },
-                { q: "How is this different from just buying off-the-shelf software?", a: "Off-the-shelf software solves one problem. An AI OS is a central brain that connects ALL your software and data. It solves the bigger, more expensive problem: the chaos and manual work required to make different tools work together." },
-            ];
-            const [openFaq, setOpenFaq] = useState(null);
-
-            return (
-                <section id="faq" className="py-16 md:py-24">
-                    <div className="container mx-auto px-4 max-w-4xl">
-                        <SectionTitle title="Your Questions, Answered" />
-                        <div className="space-y-4">
-                            {faqs.map((faq, index) => (
-                                <div key={index} className="bg-gray-800 rounded-lg">
-                                    <button onClick={() => setOpenFaq(openFaq === index ? null : index)} className="w-full flex justify-between items-center text-left p-6">
-                                        <span className="font-bold text-white text-lg">{faq.q}</span>
-                                        <span className={classNames("transform transition-transform duration-300", openFaq === index ? 'rotate-45' : 'rotate-0')}>
-                                            <svg className="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
-                                        </span>
-                                    </button>
-                                    <div className={classNames("overflow-hidden transition-all duration-500", openFaq === index ? 'max-h-96' : 'max-h-0')}>
-                                        <div className="p-6 pt-0 text-gray-300">
-                                            <p>{faq.a}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-            );
-        };
-
-        // Final Call-to-Action section
-        const CtaSection = ({ onCtaClick }) => (
-             <section id="signup" className="bg-gradient-to-r from-indigo-700 to-indigo-900 text-white text-center py-16 md:py-24">
-                 <div className="container mx-auto px-4">
-                     <h2 className="text-4xl md:text-5xl font-black mb-4">While You're Reading This, Your Competitor is Automating.</h2>
-                     <p className="text-lg md:text-xl text-indigo-200 max-w-3xl mx-auto mb-8">Don't get left behind. The highest-performing businesses are already leveraging AI. Discover your #1 automation opportunity with a no-pressure, no-cost strategy session.</p>
-                     <button onClick={onCtaClick} className="cta-button inline-block bg-teal-500 text-gray-900 font-bold text-lg px-12 py-4 rounded-full transition-transform duration-300 hover:-translate-y-1 shadow-lg pulse">
-                         Claim My Free AI Growth Plan
-                     </button>
-                     <p className="text-sm text-indigo-300 mt-3">Limited slots available this month.</p>
-                 </div>
-             </section>
-        );
-
-        // Footer section
-        const Footer = () => (
-              <footer className="bg-gray-900 text-center text-gray-400 py-8 border-t border-gray-800">
-                  <div className="container mx-auto px-4">
-                      <p className="font-bold text-white text-lg">Magnolia AI Experts</p>
-                      <p className="my-1">Innovative AI Solutions for Growing Businesses</p>
-                      <p className="my-1">info@magnoliaaiexperts.com</p>
-                      <div className="mt-4">
-                          <p>&copy; {new Date().getFullYear()} Magnolia AI Experts. All Rights Reserved.</p>
-                      </div>
-                      <p className="text-xs text-gray-600 mt-4">This page contains AI generated content.</p>
-                  </div>
-              </footer>
-        );
-
-        // Main App component that orchestrates everything
-        const App = () => {
-            const [activeSection, setActiveSection] = useState('home');
-            const [isModalOpen, setIsModalOpen] = useState(false);
-            
-            const openModal = () => setIsModalOpen(true);
-
-            // Initialize animations and observers
-            useEffect(() => {
-                if (window.particlesJS) {
-                    window.particlesJS('particles-js', { particles: { number: { value: 40, density: { enable: true, value_area: 800 } }, color: { value: "#05caa7" }, opacity: { value: 0.2 }, size: { value: 2 }, line_linked: { enable: true, distance: 150, color: "#4e54c8", opacity: 0.2 }, move: { enable: true, speed: 1 } }, interactivity: { events: { onhover: { enable: true, mode: "repulse" } }, modes: { repulse: { distance: 80 } } } });
-                }
-                
-                gsap.registerPlugin(ScrollTrigger);
-                gsap.utils.toArray('.feature-card, .step-card, .testimonial-card').forEach(elem => {
-                    gsap.from(elem, { 
-                        scrollTrigger: { trigger: elem, start: 'top 85%', toggleActions: 'play none none none' },
-                        opacity: 0, y: 50, duration: 0.8, ease: 'power3.out',
-                    });
-                });
-
-                const sections = Array.from(document.querySelectorAll('header[id], section[id]'));
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            setActiveSection(entry.target.id);
-                        }
-                    });
-                }, { rootMargin: '-40% 0px -60% 0px' });
-                sections.forEach(sec => observer.observe(sec));
-                
-                return () => observer.disconnect();
-            }, []);
-
-            useEffect(() => {
-                document.body.style.overflow = isModalOpen ? 'hidden' : 'unset';
-            }, [isModalOpen]);
-
-            const structuredData = {
-                "@context": "https://schema.org",
-                "@type": "Service",
-                "serviceType": "Custom AI Operating System Development",
-                "provider": { "@type": "Organization", "name": "Magnolia AI Experts", "url": seoData.url },
-                "name": "Custom AI Operating System for Business Automation",
-                "description": seoData.description,
-                "offers": { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Free AI Growth Strategy Session" }, "price": "0", "priceCurrency": "USD" }
-            };
-
-            const faqStructuredData = {
-                "@context": "https://schema.org",
-                "@type": "FAQPage",
-                "mainEntity": [
-                    { "@type": "Question", "name": "Is an AI Operating System only for large companies?", "acceptedAnswer": { "@type": "Answer", "text": "Not at all. Our AI Operating Systems are custom-built and scale to your needs. We often find that small to medium-sized businesses see the most dramatic ROI by automating manual tasks that the owner or key employees are stuck doing." }},
-                    { "@type": "Question", "name": "What is the typical ROI for an AI OS?", "acceptedAnswer": { "@type": "Answer", "text": "We target a clear return in three areas: 1) Time saved by automating tasks, 2) Money saved by reducing errors and waste, and 3) Revenue gained from faster, smarter operations. We'll build a custom ROI projection for you in our free strategy session." }},
-                    { "@type": "Question", "name": "How is this different from off-the-shelf software?", "acceptedAnswer": { "@type": "Answer", "text": "Off-the-shelf software solves one problem. An AI OS is a central brain that connects ALL your software and data. It solves the bigger, more expensive problem: the chaos and manual work required to make different tools work together." }}
-                ]
-            };
-            
-            return (
-                <div className="bg-gray-900">
-                    <HeadSEO title={seoData.title} description={seoData.description} keywords={seoData.keywords} />
-                    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
-                    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }} />
-
-                    {isModalOpen && <ConsultationModal onClose={() => setIsModalOpen(false)} />}
-                    
-                    <Navigation activeSection={activeSection} onCtaClick={openModal} />
-                    <main>
-                        <Header onCtaClick={openModal} />
-                        <FeaturesSection />
-                        <HowItWorksSection />
-                        <TestimonialsSection />
-                        <FaqSection />
-                        <CtaSection onCtaClick={openModal} />
-                    </main>
-                    <Footer />
-                    <ChatbotWidget />
                 </div>
-            );
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const SolutionPage = () => {
+      const steps = [
+        { title: "1. Discover & Strategize", description: "Deep-dive consultation maps processes, tools, and pain points. Identify the single highest-ROI automation opportunity. Deliver a clear growth plan with timeline and projected ROI." },
+        { title: "2. Architect & Integrate", description: "Blueprint a bespoke AI OS that connects your CRM, accounting, and ops via APIs. Build the central brain—your single source of truth." },
+        { title: "3. Automate & Deploy", description: "Implement workflows that eliminate manual tasks—reports, onboarding, forecasting. Rigorous testing + training ensure day-one adoption." }
+      ];
+      return (
+        <section className="py-16 md:py-24">
+          <div className="container mx-auto px-4">
+            <SectionTitle title="The AI Operating System: Your Central Command" subtitle="We don’t sell ‘a tool’. We build a unified, intelligent engine tailored to your business." />
+            <div className="relative flex flex-col items-center gap-12">
+              {steps.map((step, index) => (
+                <div key={index} className="step-card relative bg-gray-800 p-8 rounded-xl shadow-lg z-10 w-full max-w-2xl text-center border border-gray-700">
+                  <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center text-xl font-bold border-4 border-gray-900">{index + 1}</div>
+                  <h3 className="text-2xl font-bold text-white mt-8 mb-3">{step.title}</h3>
+                  <p className="text-gray-300">{step.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const ResultsPage = () => (
+      <section className="bg-gray-800 py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <SectionTitle title="Real Businesses, Tangible Results." subtitle="Our AI Operating Systems act as profit multipliers." />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="testimonial-card relative bg-gray-900 p-8 rounded-xl shadow-lg border border-gray-700">
+              <p className="text-lg italic text-gray-300 mb-6">"The AI OS automated intake + project setup. We reclaimed <span className='font-bold text-white'>20 hrs/week</span> of admin. For the first time, we're ahead of schedule."</p>
+              <div className="text-sm text-gray-400">Operations Manager, Regional Services Co.</div>
+            </div>
+            <div className="testimonial-card relative bg-gray-900 p-8 rounded-xl shadow-lg border border-gray-700">
+              <p className="text-lg italic text-gray-300 mb-6">"Unified data view = fewer errors and faster decisions. Monthly reporting time dropped by <span className='font-bold text-white'>75%</span>."</p>
+              <div className="text-sm text-gray-400">CFO, SMB Manufacturing</div>
+            </div>
+            <div className="testimonial-card relative bg-gray-900 p-8 rounded-xl shadow-lg border border-gray-700">
+              <p className="text-lg italic text-gray-300 mb-6">"Automated follow-ups increased close rates by <span className='font-bold text-white'>18%</span> in 60 days."</p>
+              <div className="text-sm text-gray-400">Head of Sales, B2B SaaS</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+
+    const FeaturesSection = () => {
+      const features = [
+        { icon: '🧠', title: 'Single Source of Truth', description: "Connect CRM, email, accounting, and ops into one brain. Instant, accurate answers." },
+        { icon: '🤖', title: 'Reclaim Hours', description: "Automate data entry, reports, follow-ups, scheduling. Free your team for high-value work." },
+        { icon: '📈', title: 'Operate with Certainty', description: "Spot trends, forecast outcomes, and make profitable decisions fast." },
+        { icon: '🔌', title: 'Amplify Existing Tools', description: "Keep what works. Integrate APIs to compound value across your stack." },
+      ];
+      useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.utils.toArray('.feature-card, .step-card, .testimonial-card').forEach(elem => {
+          gsap.from(elem, {
+            scrollTrigger: { trigger: elem, start: 'top 85%', toggleActions: 'play none none none' },
+            opacity: 0, y: 50, duration: 0.8, ease: 'power3.out',
+          });
+        });
+      }, []);
+      return (
+        <section id="features" className="bg-gray-800 py-16 md:py-24">
+          <div className="container mx-auto px-4">
+            <SectionTitle title="Stop Operating with Handcuffs On." subtitle="Your AI OS removes friction that slows you down and drains profits." />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {features.map((f) => (
+                <div key={f.title} className="feature-card bg-gray-900 p-8 rounded-xl shadow-lg text-center transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-teal-500 border-2 border-transparent">
+                  <div className="text-5xl mb-4" role="img" aria-label="feature-icon">{f.icon}</div>
+                  <h3 className="text-xl font-bold text-white mb-2">{f.title}</h3>
+                  <p className="text-gray-400">{f.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const FaqSection = () => {
+      const faqs = [
+        { q: "Is this only for large companies?", a: "No. We often see the biggest ROI in SMBs by automating owner-level tasks." },
+        { q: "What’s the ROI?", a: "Time saved, errors reduced, and revenue gained from faster execution. We project ROI in your free session." },
+        { q: "Is it hard to use?", a: "We simplify. Your AI OS enhances tools your team already uses, with training included." },
+        { q: "Why not off-the-shelf?", a: "Point tools solve one problem. Your AI OS connects all tools and data with one intelligent brain." },
+      ];
+      const [open, setOpen] = useState(null);
+      return (
+        <section id="faq" className="py-16 md:py-24">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <SectionTitle title="Your Questions, Answered" />
+            <div className="space-y-4">
+              {faqs.map((faq, idx) => (
+                <div key={idx} className="bg-gray-800 rounded-lg">
+                  <button onClick={() => setOpen(open === idx ? null : idx)} className="w-full flex justify-between items-center text-left p-6">
+                    <span className="font-bold text-white text-lg">{faq.q}</span>
+                    <span className={classNames("transform transition-transform duration-300", open === idx ? 'rotate-45' : 'rotate-0')}>
+                      <svg className="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                    </span>
+                  </button>
+                  <div className={classNames("overflow-hidden transition-all duration-500", open === idx ? 'max-h-96' : 'max-h-0')}>
+                    <div className="p-6 pt-0 text-gray-300">
+                      <p>{faq.a}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const CtaSection = ({ onCtaClick }) => (
+      <section id="signup" className="bg-gradient-to-r from-indigo-700 to-indigo-900 text-white text-center py-16 md:py-24">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl md:text-5xl font-black mb-4">While You're Reading This, Your Competitor is Automating.</h2>
+          <p className="text-lg md:text-xl text-indigo-200 max-w-3xl mx-auto mb-8">Discover your #1 automation opportunity with a no-pressure, no-cost strategy session.</p>
+          <button onClick={onCtaClick} className="cta-button inline-block bg-teal-500 text-gray-900 font-bold text-lg px-12 py-4 rounded-full transition-transform duration-300 hover:-translate-y-1 shadow-lg pulse" aria-label="Claim My Free AI Growth Plan">
+            Claim My Free AI Growth Plan
+          </button>
+          <p className="text-sm text-indigo-300 mt-3">Limited slots available this month.</p>
+        </div>
+      </section>
+    );
+
+    const Footer = () => (
+      <footer className="bg-gray-900 text-center text-gray-400 py-8 border-t border-gray-800">
+        <div className="container mx-auto px-4">
+          <p className="font-bold text-white text-lg">Magnolia AI Experts</p>
+          <p className="my-1">Innovative AI Solutions for Growing Businesses</p>
+          <p className="my-1">info@magnoliaaiexperts.com</p>
+          <div className="mt-4">
+            <p>&copy; {new Date().getFullYear()} Magnolia AI Experts. All Rights Reserved.</p>
+          </div>
+          <p className="text-xs text-gray-600 mt-4">This page contains AI generated content.</p>
+        </div>
+      </footer>
+    );
+
+    // --- MAIN APP ---
+    const App = () => {
+      const [currentPage, setCurrentPage] = useState('home');
+      const [isModalOpen, setIsModalOpen] = useState(false);
+
+      const openModal = () => setIsModalOpen(true);
+      const closeModal = () => setIsModalOpen(false);
+      const navigate = (page) => { setCurrentPage(page); window.scrollTo(0, 0); };
+
+      const renderPage = () => {
+        switch (currentPage) {
+          case 'home': return <HomePage onCtaClick={openModal} />;
+          case 'problem': return <ProblemPage />;
+          case 'solution': return <SolutionPage />;
+          case 'results': return <ResultsPage />;
+          default: return <HomePage onCtaClick={openModal} />;
+        }
+      };
+
+      const serviceStructuredData = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "Custom AI Operating System Development",
+        "provider": { "@type": "Organization", "name": "Magnolia AI Experts", "url": seoData.url },
+        "name": "Custom AI Operating System for Business Automation",
+        "description": seoData.description,
+        "offers": { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Free AI Growth Strategy Session" }, "price": "0", "priceCurrency": "USD" }
+      };
+
+      const faqStructuredData = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Is an AI Operating System only for large companies?", "acceptedAnswer": { "@type": "Answer", "text": "Not at all. Our AI Operating Systems are custom-built and scale to your needs. SMBs often see the most dramatic ROI." }},
+          { "@type": "Question", "name": "What is the typical ROI for an AI OS?", "acceptedAnswer": { "@type": "Answer", "text": "Time saved by automating tasks, money saved by reducing errors and waste, and revenue gained from faster, smarter operations." }},
+          { "@type": "Question", "name": "How is this different from off-the-shelf software?", "acceptedAnswer": { "@type": "Answer", "text": "Off-the-shelf software solves one problem. An AI OS connects all tools and data in one intelligent brain." }}
+        ]
+      };
+
+      const orgStructuredData = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Magnolia AI Experts",
+        "url": seoData.url,
+        "logo": seoData.image,
+        "sameAs": []
+      };
+
+      useEffect(() => {
+        // inject structured data
+        const addLD = (id, obj) => {
+          let el = document.getElementById(id);
+          if (!el) {
+            el = document.createElement('script');
+            el.type = 'application/ld+json';
+            el.id = id;
+            document.head.appendChild(el);
+          }
+          el.text = JSON.stringify(obj);
         };
+        addLD('ld-service', serviceStructuredData);
+        addLD('ld-faq', faqStructuredData);
+        addLD('ld-org', orgStructuredData);
+      }, []);
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
+      return (
+        <div className="bg-gray-900 min-h-screen">
+          <HeadSEO title={seoData.title} description={seoData.description} />
+          {isModalOpen && <ConsultationModal onClose={closeModal} />}
+          <Navigation activePage={currentPage} onNavigate={navigate} onCtaClick={openModal} />
 
-    </script>
-    
+          <main>
+            {renderPage()}
+            {/* Shared sections */}
+            <FeaturesSection />
+            <FaqSection />
+            <CtaSection onCtaClick={openModal} />
+          </main>
+
+          <Footer />
+          <ChatbotWidget />
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
 </body>
 </html>
